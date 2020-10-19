@@ -76,13 +76,9 @@
       true,
       "as-needed"
     ],
-    "quotemark": [
-      true,
-      "single"
-    ],
     "semicolon": {
       "options": [
-        "always"
+        "never"
       ]
     },
     "space-before-function-paren": {
