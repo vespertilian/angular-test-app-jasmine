@@ -7,7 +7,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
 
-xdescribe('TimePickerControlComponent', () => {
+describe('TimePickerControlComponent', () => {
   function setup(): any {
     TestBed.configureTestingModule({
       declarations: [
@@ -117,4 +117,4 @@ xdescribe('TimePickerControlComponent', () => {
       })
     })
   })
-});
+})
