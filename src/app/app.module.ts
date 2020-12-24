@@ -1,10 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
-
 import { AppComponent } from './app.component'
 import { TimePickerControlComponent } from './time-picker-control/time-picker-control.component'
-import { MatSelectModule } from '@angular/material/select'
 import { ReactiveFormsModule } from '@angular/forms'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MatIconModule } from '@angular/material/icon'
+import { MatButtonModule } from '@angular/material/button'
+import { FormlyModule } from '@ngx-formly/core'
+import { MatSuffixModule, SUFFIX_EXTENSION_CONFIG } from './mat-suffix/mat-suffix.module'
+import { MatSelectModule } from '@angular/material/select'
+import { FormlyMatInputModule } from '@ngx-formly/material/input'
+import { CommonModule } from '@angular/common'
 
 @NgModule({
   declarations: [
@@ -12,9 +17,17 @@ import { ReactiveFormsModule } from '@angular/forms'
     TimePickerControlComponent,
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule,
     MatSelectModule,
-    ReactiveFormsModule
+    FormlyModule.forRoot(
+      // SUFFIX_EXTENSION_CONFIG
+    ),
+    FormlyMatInputModule,
+    MatSuffixModule
   ],
   providers: [],
   bootstrap: [AppComponent]
