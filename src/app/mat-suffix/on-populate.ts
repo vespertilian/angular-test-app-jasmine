@@ -11,7 +11,6 @@ export function onPopulate(field: FormlyFieldConfig) {
   }
 
   if (field.templateOptions.matSuffix) {
-    console.log('field.wrappers', field.wrappers)
-    field.wrappers = [...(field.wrappers || []), WRAPPER_NAME];
+    field.wrappers = [...(field.wrappers || []), WRAPPER_NAME]
   }
 }

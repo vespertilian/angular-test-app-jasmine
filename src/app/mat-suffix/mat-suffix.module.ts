@@ -25,6 +25,7 @@ export const SUFFIX_EXTENSION_CONFIG = {
     CommonModule,
     MatIconModule,
     FormlyModule.forChild(SUFFIX_EXTENSION_CONFIG)
-  ]
+  ],
+  exports: [MatSuffixComponent]
 })
 export class MatSuffixModule {}

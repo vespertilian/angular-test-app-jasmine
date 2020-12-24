@@ -5,8 +5,7 @@ import {
   AfterViewInit,
   ViewChild,
   TemplateRef,
-  ChangeDetectorRef
-} from "@angular/core";
+} from "@angular/core"
 import { FieldWrapper } from "@ngx-formly/core"
 import { Observable, of } from "rxjs"
 

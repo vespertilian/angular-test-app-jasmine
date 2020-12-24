@@ -1,18 +1,25 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing"
 import { MatSuffixComponent } from "./mat-suffix.component"
-import { FormlyModule, FieldType } from "@ngx-formly/core"
-import { Component } from "@angular/core"
-import { MatSuffixModule, SUFFIX_EXTENSION_CONFIG } from './mat-suffix.module'
+import { FormlyModule, FieldType } from '@ngx-formly/core'
+import { Component } from '@angular/core'
+import { MatSuffixModule, SUFFIX_EXTENSION_CONFIG } from './mat-suffix.module';
 import { By } from "@angular/platform-browser"
-import { ReactiveFormsModule } from "@angular/forms"
+import { FormGroup, ReactiveFormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common'
+import { FormlyMatInputModule } from '@ngx-formly/material/input'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
 @Component({
   template: `
-    <formly-form [fields]="fields"></formly-form>
+    <form [formGroup]="form">
+      <formly-form [fields]="fields" [model]="model" [form]="form"></formly-form>
+    </form>
   `
 })
 class TestComponent {
   toggled = false
+  model = {}
+  form = new FormGroup({})
   fields = [
     {
       key: "email",
@@ -34,32 +41,22 @@ class TestComponent {
   }
 }
 
-@Component({
-  template: `
-    <input [formControl]="formControl" [formlyAttributes]="field" />
-  `
-})
-class StubFormControlComponent extends FieldType {}
-
 describe("MatSuffixComponent", () => {
   function setup() {
     TestBed.configureTestingModule({
       imports: [
+        CommonModule,
         ReactiveFormsModule,
-        FormlyModule.forRoot({
-          types: [
-            {
-              name: "input",
-              component: StubFormControlComponent
-            }
-          ],
-          // ...SUFFIX_EXTENSION_CONFIG
-        }),
+        NoopAnimationsModule,
+        FormlyMatInputModule,
+        // FormlyModule.forRoot({
+        //   ...SUFFIX_EXTENSION_CONFIG
+        // }),
+        FormlyModule.forRoot(),
         MatSuffixModule,
       ],
       declarations: [
         TestComponent,
-        StubFormControlComponent,
         MatSuffixComponent,
       ]
     })
@@ -73,9 +70,8 @@ describe("MatSuffixComponent", () => {
     return { fixture, component }
   }
 
-  it("should create", () => {
+  fit("should create", () => {
     const { component, fixture } = setup()
-    fixture.detectChanges()
     fixture.detectChanges()
 
     expect(fixture.debugElement.query(By.css("input"))).toBeTruthy()
