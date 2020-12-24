@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing"
 import { MatSuffixComponent } from "./mat-suffix.component"
-import { FormlyModule, FieldType } from '@ngx-formly/core'
+import { FormlyModule, FieldType, FormlyConfig } from '@ngx-formly/core';
 import { Component } from '@angular/core'
 import { MatSuffixModule, SUFFIX_EXTENSION_CONFIG } from './mat-suffix.module';
 import { By } from "@angular/platform-browser"
@@ -49,9 +49,14 @@ describe("MatSuffixComponent", () => {
         ReactiveFormsModule,
         NoopAnimationsModule,
         FormlyMatInputModule,
+
+        // this works!!
         // FormlyModule.forRoot({
         //   ...SUFFIX_EXTENSION_CONFIG
         // }),
+
+        // this does not ... difference seems to be the order of the config.extensions
+        // comment this out to get the above example working
         FormlyModule.forRoot(),
         MatSuffixModule,
       ],
@@ -65,14 +70,20 @@ describe("MatSuffixComponent", () => {
       TestComponent
     )
 
+    const config = TestBed.inject(FormlyConfig)
     const component = fixture.componentInstance
 
-    return { fixture, component }
+    return { fixture, component, config }
   }
 
   fit("should create", () => {
-    const { component, fixture } = setup()
+    const { fixture, config} = setup()
     fixture.detectChanges()
+
+    // component works when extensions are in this order
+    // when passing the extension in as a model mat-suffix is the first extension
+    // weirdly if you lazy load the MatSuffixModule there is no error
+    expect(Object.keys(config.extensions)).toEqual(['core', 'field-validation', 'field-form', 'field-expression', 'mat-suffix'])
 
     expect(fixture.debugElement.query(By.css("input"))).toBeTruthy()
     const suffixComponent = fixture.debugElement.query(By.css("app-mat-suffix"))
