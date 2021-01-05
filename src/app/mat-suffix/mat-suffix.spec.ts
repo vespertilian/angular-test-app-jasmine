@@ -45,24 +45,15 @@ describe("MatSuffixComponent", () => {
   function setup() {
     TestBed.configureTestingModule({
       imports: [
-        CommonModule,
         ReactiveFormsModule,
         NoopAnimationsModule,
         FormlyMatInputModule,
 
-        // this works!!
-        // FormlyModule.forRoot({
-        //   ...SUFFIX_EXTENSION_CONFIG
-        // }),
-
-        // this does not ... difference seems to be the order of the config.extensions
-        // comment this out to get the above example working
         FormlyModule.forRoot(),
         MatSuffixModule,
       ],
       declarations: [
         TestComponent,
-        MatSuffixComponent,
       ]
     })
 
