@@ -10,6 +10,7 @@ import { MatSuffixModule, SUFFIX_EXTENSION_CONFIG } from './mat-suffix/mat-suffi
 import { MatSelectModule } from '@angular/material/select'
 import { FormlyMatInputModule } from '@ngx-formly/material/input'
 import { CommonModule } from '@angular/common'
+import { RepeatSectionFormlyModule } from './repeat-section/repeat-section-formly.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CommonModule } from '@angular/common'
     FormlyModule.forRoot(
       // SUFFIX_EXTENSION_CONFIG
     ),
+    RepeatSectionFormlyModule,
     FormlyMatInputModule,
     MatSuffixModule
   ],

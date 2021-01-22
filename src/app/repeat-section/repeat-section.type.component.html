@@ -1,0 +1,6 @@
+<h1 *ngIf="to?.title">{{to?.title}}</h1>
+<div *ngFor="let field of field.fieldGroup; let i = index">
+  <formly-field [field]="field"></formly-field>
+  <button *ngIf="to?.allowRemove" mat-mini-fab color="primary" (click)="remove(i)"><mat-icon>remove_circle</mat-icon></button>
+</div>
+<button *ngIf="to?.allowAdd" mat-raised-button color="primary" (click)="add()"><mat-icon>add_circle</mat-icon> &nbsp; Add</button>

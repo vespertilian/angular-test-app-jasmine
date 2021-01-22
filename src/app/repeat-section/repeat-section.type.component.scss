@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+}
+
+formly-field {
+  margin-top: 1rem
+}
